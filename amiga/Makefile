@@ -76,7 +76,7 @@ STRIP = strip
 
 LDFLAGS =
 LIBS =
-CFLAGS = -DNDEBUG -O2
+LOCAL_CFLAGS = -DNDEBUG -O2
 LTFLAGS = -crs
 STRIPFLAGS = -R.comment
 LAUNCH =
@@ -87,7 +87,7 @@ ifeq ($(MAKECMDGOALS), staticlib)
 endif
 
 ifeq ($(MAKECMDGOALS), sharedlib)
- CFLAGS += -DAMIGA_SHARED_LIB -D__USE_INLINE__
+LOCAL_CFLAGS += -DAMIGA_SHARED_LIB -D__USE_INLINE__
  INCLUDES = -I. -Iinclude -Iinclude/libraries -I../lib
  LAUNCH = $(DESTDIR)/launch.o
 endif
