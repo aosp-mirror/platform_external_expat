@@ -2,6 +2,9 @@
    See the file COPYING for copying permission.
 */
 
+/* This file is included! */
+#ifdef XML_TOK_IMPL_C
+
 #ifndef IS_INVALID_CHAR
 #define IS_INVALID_CHAR(enc, ptr, n) (0)
 #endif
@@ -1741,13 +1744,12 @@ PREFIX(updatePosition)(const ENCODING *enc,
                        const char *end,
                        POSITION *pos)
 {
-  while (ptr != end) {
+  // BEGIN android-changed
+  while (ptr < end) {
+  // END android-changed
     switch (BYTE_TYPE(enc, ptr)) {
 #define LEAD_CASE(n) \
     case BT_LEAD ## n: \
-      if (end - ptr < n) { \
-        return; \
-      } \
       ptr += n; \
       break;
     LEAD_CASE(2) LEAD_CASE(3) LEAD_CASE(4)
@@ -1780,3 +1782,4 @@ PREFIX(updatePosition)(const ENCODING *enc,
 #undef CHECK_NMSTRT_CASE
 #undef CHECK_NMSTRT_CASES
 
+#endif /* XML_TOK_IMPL_C */
