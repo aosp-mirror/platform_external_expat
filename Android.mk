@@ -32,7 +32,7 @@ ifeq ($(HOST_OS),darwin)
 endif
 
 LOCAL_MODULE:= libexpat
-
+LOCAL_MODULE_TAGS := optional
 LOCAL_COPY_HEADERS_TO := $(common_COPY_HEADERS_TO)
 LOCAL_COPY_HEADERS := $(common_COPY_HEADERS)
 
@@ -49,7 +49,7 @@ LOCAL_CFLAGS += $(common_CFLAGS)
 LOCAL_C_INCLUDES += $(common_C_INCLUDES)
 
 LOCAL_MODULE:= libexpat
-
+LOCAL_MODULE_TAGS := optional
 LOCAL_COPY_HEADERS_TO := $(common_COPY_HEADERS_TO)
 LOCAL_COPY_HEADERS := $(common_COPY_HEADERS)
 
