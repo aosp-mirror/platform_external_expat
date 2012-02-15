@@ -45,7 +45,7 @@ include $(BUILD_HOST_STATIC_LIBRARY)
 # Device static library
 include $(CLEAR_VARS)
 
-ifneq ($(TARGET_ARCH),x86)
+ifeq ($(TARGET_ARCH),arm)
 LOCAL_NDK_VERSION := 4
 LOCAL_SDK_VERSION := 8
 endif
@@ -62,7 +62,7 @@ include $(BUILD_STATIC_LIBRARY)
 # Device shared library
 include $(CLEAR_VARS)
 
-ifneq ($(TARGET_ARCH),x86)
+ifeq ($(TARGET_ARCH),arm)
 LOCAL_NDK_VERSION := 4
 LOCAL_SDK_VERSION := 8
 endif
