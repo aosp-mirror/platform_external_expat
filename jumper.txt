@@ -1,0 +1,3 @@
+Snapshot from:
+ssh://android-git:29418/platform/external/expat
+tip: commit 8e73b59cb96728872715ab00b374815d6b974e24

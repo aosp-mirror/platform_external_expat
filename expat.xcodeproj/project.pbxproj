@@ -1,0 +1,279 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B00E01280BD00970001209F4 /* latin1tab.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E011B0BD00970001209F4 /* latin1tab.h */; };
+		B00E01290BD00970001209F4 /* iasciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E011C0BD00970001209F4 /* iasciitab.h */; };
+		B00E012A0BD00970001209F4 /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E011D0BD00970001209F4 /* xmltok.h */; };
+		B00E012B0BD00970001209F4 /* xmlrole.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E011E0BD00970001209F4 /* xmlrole.h */; };
+		B00E012C0BD00970001209F4 /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E011F0BD00970001209F4 /* expat.h */; };
+		B00E012D0BD00970001209F4 /* ascii.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E01200BD00970001209F4 /* ascii.h */; };
+		B00E012E0BD00970001209F4 /* nametab.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E01210BD00970001209F4 /* nametab.h */; };
+		B00E01300BD00970001209F4 /* utf8tab.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E01230BD00970001209F4 /* utf8tab.h */; };
+		B00E01320BD00970001209F4 /* asciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E01250BD00970001209F4 /* asciitab.h */; };
+		B00E01330BD00970001209F4 /* winconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E01260BD00970001209F4 /* winconfig.h */; };
+		B00E01340BD00970001209F4 /* xmltok_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E01270BD00970001209F4 /* xmltok_impl.h */; };
+		B00E01360BD009B8001209F4 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = B00E01350BD009B8001209F4 /* xmlparse.c */; };
+		B00E01380BD009BD001209F4 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = B00E01370BD009BD001209F4 /* xmlrole.c */; };
+		B00E013A0BD009C2001209F4 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = B00E01390BD009C2001209F4 /* xmltok.c */; };
+		B00E01530BD00A29001209F4 /* expat_config.h in Headers */ = {isa = PBXBuildFile; fileRef = B00E01520BD00A29001209F4 /* expat_config.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B00E011B0BD00970001209F4 /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = latin1tab.h; path = lib/latin1tab.h; sourceTree = SOURCE_ROOT; };
+		B00E011C0BD00970001209F4 /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = iasciitab.h; path = lib/iasciitab.h; sourceTree = SOURCE_ROOT; };
+		B00E011D0BD00970001209F4 /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = lib/xmltok.h; sourceTree = SOURCE_ROOT; };
+		B00E011E0BD00970001209F4 /* xmlrole.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = xmlrole.h; path = lib/xmlrole.h; sourceTree = SOURCE_ROOT; };
+		B00E011F0BD00970001209F4 /* expat.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = expat.h; path = lib/expat.h; sourceTree = SOURCE_ROOT; };
+		B00E01200BD00970001209F4 /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = lib/ascii.h; sourceTree = SOURCE_ROOT; };
+		B00E01210BD00970001209F4 /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = nametab.h; path = lib/nametab.h; sourceTree = SOURCE_ROOT; };
+		B00E01230BD00970001209F4 /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = utf8tab.h; path = lib/utf8tab.h; sourceTree = SOURCE_ROOT; };
+		B00E01250BD00970001209F4 /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = asciitab.h; path = lib/asciitab.h; sourceTree = SOURCE_ROOT; };
+		B00E01260BD00970001209F4 /* winconfig.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = winconfig.h; path = lib/winconfig.h; sourceTree = SOURCE_ROOT; };
+		B00E01270BD00970001209F4 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = lib/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
+		B00E01350BD009B8001209F4 /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = xmlparse.c; path = lib/xmlparse.c; sourceTree = SOURCE_ROOT; };
+		B00E01370BD009BD001209F4 /* xmlrole.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = xmlrole.c; path = lib/xmlrole.c; sourceTree = SOURCE_ROOT; };
+		B00E01390BD009C2001209F4 /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; name = xmltok.c; path = lib/xmltok.c; sourceTree = SOURCE_ROOT; };
+		B00E01520BD00A29001209F4 /* expat_config.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = expat_config.h; sourceTree = "<group>"; };
+		D2AAC046055464E500DB518D /* libexpat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libexpat.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D720CB6A0D98137C003AE8EC /* MacConfigExternalDebug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = MacConfigExternalDebug.xcconfig; path = ../MacConfigExternalDebug.xcconfig; sourceTree = SOURCE_ROOT; };
+		D720CB6B0D98137C003AE8EC /* MacConfigExternalRelease.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = MacConfigExternalRelease.xcconfig; path = ../MacConfigExternalRelease.xcconfig; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D289987405E68DCB004EDB86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* expat */ = {
+			isa = PBXGroup;
+			children = (
+				D720CB6A0D98137C003AE8EC /* MacConfigExternalDebug.xcconfig */,
+				D720CB6B0D98137C003AE8EC /* MacConfigExternalRelease.xcconfig */,
+				08FB7795FE84155DC02AAC07 /* Source */,
+				C6A0FF2B0290797F04C91782 /* Documentation */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = expat;
+			sourceTree = "<group>";
+		};
+		08FB7795FE84155DC02AAC07 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B00E01520BD00A29001209F4 /* expat_config.h */,
+				B00E011B0BD00970001209F4 /* latin1tab.h */,
+				B00E011C0BD00970001209F4 /* iasciitab.h */,
+				B00E011D0BD00970001209F4 /* xmltok.h */,
+				B00E011E0BD00970001209F4 /* xmlrole.h */,
+				B00E011F0BD00970001209F4 /* expat.h */,
+				B00E01200BD00970001209F4 /* ascii.h */,
+				B00E01210BD00970001209F4 /* nametab.h */,
+				B00E01230BD00970001209F4 /* utf8tab.h */,
+				B00E01250BD00970001209F4 /* asciitab.h */,
+				B00E01260BD00970001209F4 /* winconfig.h */,
+				B00E01270BD00970001209F4 /* xmltok_impl.h */,
+				B00E01350BD009B8001209F4 /* xmlparse.c */,
+				B00E01370BD009BD001209F4 /* xmlrole.c */,
+				B00E01390BD009C2001209F4 /* xmltok.c */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC046055464E500DB518D /* libexpat.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6A0FF2B0290797F04C91782 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC043055464E500DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B00E01280BD00970001209F4 /* latin1tab.h in Headers */,
+				B00E01290BD00970001209F4 /* iasciitab.h in Headers */,
+				B00E012A0BD00970001209F4 /* xmltok.h in Headers */,
+				B00E012B0BD00970001209F4 /* xmlrole.h in Headers */,
+				B00E012C0BD00970001209F4 /* expat.h in Headers */,
+				B00E012D0BD00970001209F4 /* ascii.h in Headers */,
+				B00E012E0BD00970001209F4 /* nametab.h in Headers */,
+				B00E01300BD00970001209F4 /* utf8tab.h in Headers */,
+				B00E01320BD00970001209F4 /* asciitab.h in Headers */,
+				B00E01330BD00970001209F4 /* winconfig.h in Headers */,
+				B00E01340BD00970001209F4 /* xmltok_impl.h in Headers */,
+				B00E01530BD00A29001209F4 /* expat_config.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC045055464E500DB518D /* expat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "expat" */;
+			buildPhases = (
+				B0A7EC9F1194DD4400E23DF4 /* Set Mac config.h */,
+				D2AAC043055464E500DB518D /* Headers */,
+				D2AAC044055464E500DB518D /* Sources */,
+				D289987405E68DCB004EDB86 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = expat;
+			productName = expat;
+			productReference = D2AAC046055464E500DB518D /* libexpat.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "expat" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* expat */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC045055464E500DB518D /* expat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B0A7EC9F1194DD4400E23DF4 /* Set Mac config.h */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/config_mac.h",
+			);
+			name = "Set Mac config.h";
+			outputPaths = (
+				"$(SRCROOT)/expat_config.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp config_mac.h expat_config.h";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC044055464E500DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B00E01360BD009B8001209F4 /* xmlparse.c in Sources */,
+				B00E01380BD009BD001209F4 /* xmlrole.c in Sources */,
+				B00E013A0BD009C2001209F4 /* xmltok.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91EC08733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = expat;
+			};
+			name = Debug;
+		};
+		1DEB91ED08733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = expat;
+			};
+			name = Release;
+		};
+		1DEB91F008733DB70010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D720CB6A0D98137C003AE8EC /* MacConfigExternalDebug.xcconfig */;
+			buildSettings = {
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DHAVE_EXPAT_CONFIG_H",
+					"$(OTHER_CFLAGS_QUOTED_1)",
+					"$(OTHER_CFLAGS_QUOTED_2)",
+				);
+				OTHER_CFLAGS_QUOTED_1 = "-DPACKAGE='\"expat\"'";
+				OTHER_CFLAGS_QUOTED_2 = "-DVERSION='\"expat_2.0.1\"'";
+				PREBINDING = NO;
+			};
+			name = Debug;
+		};
+		1DEB91F108733DB70010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D720CB6B0D98137C003AE8EC /* MacConfigExternalRelease.xcconfig */;
+			buildSettings = {
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-DHAVE_EXPAT_CONFIG_H",
+					"$(OTHER_CFLAGS_QUOTED_1)",
+					"$(OTHER_CFLAGS_QUOTED_2)",
+				);
+				OTHER_CFLAGS_QUOTED_1 = "-DPACKAGE='\"expat\"'";
+				OTHER_CFLAGS_QUOTED_2 = "-DVERSION='\"expat_2.0.1\"'";
+				PREBINDING = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "expat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91EC08733DB70010E9CD /* Debug */,
+				1DEB91ED08733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "expat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91F008733DB70010E9CD /* Debug */,
+				1DEB91F108733DB70010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}
