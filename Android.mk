@@ -62,7 +62,6 @@ include $(BUILD_HOST_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 ifeq ($(TARGET_ARCH),arm)
-LOCAL_NDK_VERSION := 4
 LOCAL_SDK_VERSION := 8
 endif
 
@@ -79,7 +78,6 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 
 ifeq ($(TARGET_ARCH),arm)
-LOCAL_NDK_VERSION := 4
 LOCAL_SDK_VERSION := 8
 endif
 
