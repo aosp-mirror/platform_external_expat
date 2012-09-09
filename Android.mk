@@ -8,7 +8,12 @@ common_SRC_FILES := \
 	lib/xmlrole.c \
 	lib/xmltok.c
 
-common_CFLAGS := -Wall -Wmissing-prototypes -Wstrict-prototypes -fexceptions -DHAVE_EXPAT_CONFIG_H
+common_CFLAGS := \
+    -Wall \
+    -Wmissing-prototypes -Wstrict-prototypes \
+    -Wno-unused-parameter -Wno-missing-field-initializers \
+    -fexceptions \
+    -DHAVE_EXPAT_CONFIG_H
 
 common_C_INCLUDES += \
 	$(LOCAL_PATH)/lib
@@ -32,6 +37,7 @@ ifeq ($(HOST_OS),darwin)
 endif
 
 LOCAL_MODULE:= libexpat
+LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_HOST_STATIC_LIBRARY)
@@ -48,6 +54,7 @@ ifeq ($(HOST_OS),darwin)
 endif
 
 LOCAL_MODULE:= libexpat
+LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_MODULE_TAGS := optional
 LOCAL_COPY_HEADERS_TO := $(common_COPY_HEADERS_TO)
 LOCAL_COPY_HEADERS := $(common_COPY_HEADERS)
@@ -70,6 +77,7 @@ LOCAL_CFLAGS += $(common_CFLAGS)
 LOCAL_C_INCLUDES += $(common_C_INCLUDES)
 
 LOCAL_MODULE:= libexpat_static
+LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_STATIC_LIBRARY)
@@ -86,6 +94,7 @@ LOCAL_CFLAGS += $(common_CFLAGS)
 LOCAL_C_INCLUDES += $(common_C_INCLUDES)
 
 LOCAL_MODULE:= libexpat
+LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_MODULE_TAGS := optional
 LOCAL_COPY_HEADERS_TO := $(common_COPY_HEADERS_TO)
 LOCAL_COPY_HEADERS := $(common_COPY_HEADERS)
