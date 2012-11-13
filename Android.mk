@@ -69,7 +69,9 @@ include $(BUILD_HOST_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 
 ifeq ($(TARGET_ARCH),arm)
-LOCAL_SDK_VERSION := 8
+    LOCAL_SDK_VERSION := 8
+else
+    LOCAL_SDK_VERSION := 9
 endif
 
 LOCAL_SRC_FILES := $(common_SRC_FILES)
@@ -86,7 +88,9 @@ include $(BUILD_STATIC_LIBRARY)
 include $(CLEAR_VARS)
 
 ifeq ($(TARGET_ARCH),arm)
-LOCAL_SDK_VERSION := 8
+    LOCAL_SDK_VERSION := 8
+else
+    LOCAL_SDK_VERSION := 9
 endif
 
 LOCAL_SRC_FILES := $(common_SRC_FILES)
