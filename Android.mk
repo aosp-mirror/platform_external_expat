@@ -53,7 +53,7 @@ ifeq ($(HOST_OS),darwin)
 	LOCAL_CFLAGS += -fno-common
 endif
 
-LOCAL_MODULE:= libexpat-host
+LOCAL_MODULE:= libexpat
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_MODULE_TAGS := optional
 LOCAL_COPY_HEADERS_TO := $(common_COPY_HEADERS_TO)
