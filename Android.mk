@@ -18,11 +18,6 @@ common_CFLAGS := \
 common_C_INCLUDES += \
 	$(LOCAL_PATH)/lib
 
-common_COPY_HEADERS_TO := libexpat
-common_COPY_HEADERS := \
-	lib/expat.h \
-	lib/expat_external.h
-
 # For the host
 # =====================================================
 
@@ -58,8 +53,6 @@ endif
 LOCAL_MODULE:= libexpat-host
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_MODULE_TAGS := optional
-LOCAL_COPY_HEADERS_TO := $(common_COPY_HEADERS_TO)
-LOCAL_COPY_HEADERS := $(common_COPY_HEADERS)
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/lib
 LOCAL_MULTILIB := both
 
@@ -106,8 +99,6 @@ LOCAL_C_INCLUDES += $(common_C_INCLUDES)
 LOCAL_MODULE:= libexpat
 LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 LOCAL_MODULE_TAGS := optional
-LOCAL_COPY_HEADERS_TO := $(common_COPY_HEADERS_TO)
-LOCAL_COPY_HEADERS := $(common_COPY_HEADERS)
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/lib
 
 include $(BUILD_SHARED_LIBRARY)
