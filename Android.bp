@@ -1,0 +1,37 @@
+// We need to build this for both the device (as a shared library)
+// and the host (as a static library for tools to use).
+
+cc_library {
+    name: "libexpat",
+    host_supported: true,
+    unique_host_soname: true,
+    sdk_version: "9",
+
+    srcs: [
+        "lib/xmlparse.c",
+        "lib/xmlrole.c",
+        "lib/xmltok.c",
+    ],
+    cflags: [
+        "-Wall",
+        "-Wmissing-prototypes",
+        "-Wstrict-prototypes",
+        "-Wno-unused-parameter",
+        "-Wno-missing-field-initializers",
+        "-fexceptions",
+        "-DHAVE_EXPAT_CONFIG_H",
+    ],
+
+    target: {
+        darwin: {
+            cflags: ["-fno-common"],
+        },
+
+        windows: {
+            enabled: true,
+        },
+    },
+
+    local_include_dirs: ["lib"],
+    export_include_dirs: ["lib"],
+}
