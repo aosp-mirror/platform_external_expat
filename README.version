@@ -4,3 +4,4 @@ BugComponent: 24949
 
 Local Changes:
     Reverted change to switch from COMPILED_FROM_DSP to WIN32. This was needed in order to get it to compile as winconfig.h is not available.
+    Fix cast from pointer to integer of different size
