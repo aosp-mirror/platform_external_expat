@@ -729,7 +729,7 @@ generate_hash_secret_salt(XML_Parser parser)
   if (sizeof(unsigned long) == 4) {
     return entropy * 2147483647;
   } else {
-    return entropy * 2305843009213693951;
+    return entropy * (unsigned long)2305843009213693951;
   }
 }
 
@@ -1728,14 +1728,17 @@ XML_GetBuffer(XML_Parser parser, int len)
   }
 
   if (len > bufferLim - bufferEnd) {
-    int neededSize = len + (int)(bufferEnd - bufferPtr);
+#ifdef XML_CONTEXT_BYTES
+    int keep;
+#endif  /* defined XML_CONTEXT_BYTES */
+    /* Do not invoke signed arithmetic overflow: */
+    int neededSize = (int) ((unsigned)len + (unsigned)(bufferEnd - bufferPtr));
     if (neededSize < 0) {
       errorCode = XML_ERROR_NO_MEMORY;
       return NULL;
     }
 #ifdef XML_CONTEXT_BYTES
-    int keep = (int)(bufferPtr - buffer);
-
+    keep = (int)(bufferPtr - buffer);
     if (keep > XML_CONTEXT_BYTES)
       keep = XML_CONTEXT_BYTES;
     neededSize += keep;
@@ -1760,7 +1763,8 @@ XML_GetBuffer(XML_Parser parser, int len)
       if (bufferSize == 0)
         bufferSize = INIT_BUFFER_SIZE;
       do {
-        bufferSize *= 2;
+        /* Do not invoke signed arithmetic overflow: */
+        bufferSize = (int) (2U * (unsigned) bufferSize);
       } while (bufferSize < neededSize && bufferSize > 0);
       if (bufferSize <= 0) {
         errorCode = XML_ERROR_NO_MEMORY;
@@ -1887,7 +1891,7 @@ XML_Index XMLCALL
 XML_GetCurrentByteIndex(XML_Parser parser)
 {
   if (eventPtr)
-    return parseEndByteIndex - (parseEndPtr - eventPtr);
+    return (XML_Index)(parseEndByteIndex - (parseEndPtr - eventPtr));
   return -1;
 }
 
@@ -4959,9 +4963,9 @@ internalEntityProcessor(XML_Parser parser,
 
 static enum XML_Error PTRCALL
 errorProcessor(XML_Parser parser,
-               const char *s,
-               const char *end,
-               const char **nextPtr)
+               const char *UNUSED_P(s),
+               const char *UNUSED_P(end),
+               const char **UNUSED_P(nextPtr))
 {
   return errorCode;
 }
@@ -6285,7 +6289,7 @@ poolGrow(STRING_POOL *pool)
   }
   if (pool->blocks && pool->start == pool->blocks->s) {
     BLOCK *temp;
-    int blockSize = (int)(pool->end - pool->start)*2;
+    int blockSize = (int)((unsigned)(pool->end - pool->start)*2U);
 
     if (blockSize < 0)
       return XML_FALSE;
