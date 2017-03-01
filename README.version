@@ -1,3 +1,7 @@
-URL: http://sourceforge.net/projects/expat/files/expat/2.1.0/expat-2.1.0.tar.gz/download
-Version: 2.1.0
+URL: https://sourceforge.net/projects/expat/files/expat/2.2.0/expat-2.2.0.tar.bz2/download
+Version: 2.2.0
 BugComponent: 24949
+
+Local Changes:
+    Reverted change to switch from COMPILED_FROM_DSP to WIN32. This was needed in order to get it to compile as winconfig.h is not available.
+    Fix cast from pointer to integer of different size
