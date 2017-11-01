@@ -3,6 +3,10 @@
 
 cc_library {
     name: "libexpat",
+    vendor_available: true,
+    vndk: {
+        enabled: true,
+    },
     host_supported: true,
     unique_host_soname: true,
     sdk_version: "9",
@@ -14,6 +18,7 @@ cc_library {
     ],
     cflags: [
         "-Wall",
+        "-Werror",
         "-Wmissing-prototypes",
         "-Wstrict-prototypes",
         "-Wno-unused-parameter",
