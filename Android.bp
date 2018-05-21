@@ -12,6 +12,7 @@ cc_library {
     sdk_version: "9",
 
     srcs: [
+        "lib/loadlibrary.c",
         "lib/xmlparse.c",
         "lib/xmlrole.c",
         "lib/xmltok.c",
@@ -21,10 +22,12 @@ cc_library {
         "-Werror",
         "-Wmissing-prototypes",
         "-Wstrict-prototypes",
+        "-Wno-unused-function",
         "-Wno-unused-parameter",
         "-Wno-missing-field-initializers",
         "-fexceptions",
         "-DHAVE_EXPAT_CONFIG_H",
+        "-UWIN32_LEAN_AND_MEAN",
     ],
 
     target: {
