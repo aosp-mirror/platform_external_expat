@@ -7,12 +7,12 @@ third_party {
   }
   url {
     type: ARCHIVE
-    value: "https://github.com/libexpat/libexpat/releases/download/R_2_2_5/expat-2.2.5.tar.bz2"
+    value: "https://github.com/libexpat/libexpat/releases/download/R_2_2_6/expat-2.2.6.tar.bz2"
   }
-  version: "R_2_2_5"
+  version: "R_2_2_6"
   last_upgrade_date {
     year: 2018
-    month: 7
-    day: 2
+    month: 8
+    day: 16
   }
 }
