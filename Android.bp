@@ -41,6 +41,7 @@ cc_library {
         },
     },
 
+    stl: "none",
     local_include_dirs: ["lib"],
     export_include_dirs: ["lib"],
 }
