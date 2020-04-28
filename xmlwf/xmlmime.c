@@ -132,12 +132,10 @@ getXMLCharset(const char *buf, char *charset)
   if (!p || *p != '/')
     return;
   p = getTok(&next);
-/* BEGIN disabled code */
-  if (0) {
-    if (!matchkey(p, next, "xml") && charset[0] == '\0')
-      return;
-  }
-/* END disabled code */
+#if 0
+  if (!matchkey(p, next, "xml") && charset[0] == '\0')
+    return;
+#endif
   p = getTok(&next);
   while (p) {
     if (*p == ';') {

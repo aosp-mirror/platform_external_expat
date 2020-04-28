@@ -1,4 +1,4 @@
-/* 69df5be70289a11fb834869ce4a91c23c1d9dd04baffcbd10e86742d149a080c (2.2.7+)
+/* 19ac4776051591216f1874e34ee99b6a43a3784c8bd7d70efeb9258dd22b906a (2.2.6+)
                             __  __            _
                          ___\ \/ /_ __   __ _| |_
                         / _ \\  /| '_ \ / _` | __|
@@ -163,6 +163,15 @@ typedef char ICHAR;
 
 /* Do safe (NULL-aware) pointer arithmetic */
 #define EXPAT_SAFE_PTR_DIFF(p, q) (((p) && (q)) ? ((p) - (q)) : 0)
+
+/* Handle the case where memmove() doesn't exist. */
+#ifndef HAVE_MEMMOVE
+#ifdef HAVE_BCOPY
+#define memmove(d,s,l) bcopy((s),(d),(l))
+#else
+#error memmove does not exist on this platform, nor is a substitute available
+#endif /* HAVE_BCOPY */
+#endif /* HAVE_MEMMOVE */
 
 #include "internal.h"
 #include "xmltok.h"
@@ -738,7 +747,7 @@ writeRandomBytes_dev_urandom(void * target, size_t count) {
 #endif  /* ! defined(HAVE_ARC4RANDOM_BUF) && ! defined(HAVE_ARC4RANDOM) */
 
 
-#if defined(HAVE_ARC4RANDOM) && ! defined(HAVE_ARC4RANDOM_BUF)
+#if defined(HAVE_ARC4RANDOM)
 
 static void
 writeRandomBytes_arc4random(void * target, size_t count) {
@@ -756,7 +765,7 @@ writeRandomBytes_arc4random(void * target, size_t count) {
   }
 }
 
-#endif  /* defined(HAVE_ARC4RANDOM) && ! defined(HAVE_ARC4RANDOM_BUF) */
+#endif  /* defined(HAVE_ARC4RANDOM) */
 
 
 #ifdef _WIN32
@@ -3010,7 +3019,7 @@ doContent(XML_Parser parser,
         enum XML_Error result;
         if (parser->m_startCdataSectionHandler)
           parser->m_startCdataSectionHandler(parser->m_handlerArg);
-/* BEGIN disabled code */
+#if 0
         /* Suppose you doing a transformation on a document that involves
            changing only the character data.  You set up a defaultHandler
            and a characterDataHandler.  The defaultHandler simply copies
@@ -3023,9 +3032,9 @@ doContent(XML_Parser parser,
            However, now we have a start/endCdataSectionHandler, so it seems
            easier to let the user deal with this.
         */
-        else if (0 && parser->m_characterDataHandler)
+        else if (parser->m_characterDataHandler)
           parser->m_characterDataHandler(parser->m_handlerArg, parser->m_dataBuf, 0);
-/* END disabled code */
+#endif
         else if (parser->m_defaultHandler)
           reportDefault(parser, enc, s, next);
         result = doCdataSection(parser, enc, &next, end, nextPtr, haveMore);
@@ -3722,11 +3731,11 @@ doCdataSection(XML_Parser parser,
     case XML_TOK_CDATA_SECT_CLOSE:
       if (parser->m_endCdataSectionHandler)
         parser->m_endCdataSectionHandler(parser->m_handlerArg);
-/* BEGIN disabled code */
+#if 0
       /* see comment under XML_TOK_CDATA_SECT_OPEN */
-      else if (0 && parser->m_characterDataHandler)
+      else if (parser->m_characterDataHandler)
         parser->m_characterDataHandler(parser->m_handlerArg, parser->m_dataBuf, 0);
-/* END disabled code */
+#endif
       else if (parser->m_defaultHandler)
         reportDefault(parser, enc, s, next);
       *startPtr = next;
@@ -6071,7 +6080,7 @@ setElementTypePrefix(XML_Parser parser, ELEMENT_TYPE *elementType)
       else
         poolDiscard(&dtd->pool);
       elementType->prefix = prefix;
-      break;
+
     }
   }
   return 1;
