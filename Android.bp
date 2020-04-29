@@ -42,4 +42,10 @@ cc_library {
     stl: "none",
     local_include_dirs: ["lib"],
     export_include_dirs: ["lib"],
+
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.art.release",
+        "com.android.art.debug",
+    ],
 }
