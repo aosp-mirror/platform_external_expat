@@ -10,6 +10,7 @@ third_party {
     value: "https://github.com/libexpat/libexpat/releases/download/R_2_2_9/expat-2.2.9.tar.bz2"
   }
   version: "R_2_2_9"
+  license_type: NOTICE
   last_upgrade_date {
     year: 2019
     month: 10
