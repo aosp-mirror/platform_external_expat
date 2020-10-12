@@ -45,7 +45,7 @@ cc_library {
 
     apex_available: [
         "//apex_available:platform",
-        "com.android.art.release",
+        "com.android.art",
         "com.android.art.debug",
     ],
 }
