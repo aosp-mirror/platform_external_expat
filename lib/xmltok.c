@@ -32,15 +32,7 @@
 
 #include <stddef.h>
 #include <string.h> /* memcpy */
-
-#if defined(_MSC_VER) && (_MSC_VER <= 1700)
-/* for vs2012/11.0/1700 and earlier Visual Studio compilers */
-#  define bool int
-#  define false 0
-#  define true 1
-#else
-#  include <stdbool.h>
-#endif
+#include <stdbool.h>
 
 #ifdef _WIN32
 #  include "winconfig.h"
@@ -589,13 +581,13 @@ static const struct normal_encoding ascii_encoding
 static int PTRFASTCALL
 unicode_byte_type(char hi, char lo) {
   switch ((unsigned char)hi) {
-  /* 0xD800–0xDBFF first 16-bit code unit or high surrogate (W1) */
+  /* 0xD800-0xDBFF first 16-bit code unit or high surrogate (W1) */
   case 0xD8:
   case 0xD9:
   case 0xDA:
   case 0xDB:
     return BT_LEAD4;
-  /* 0xDC00–0xDFFF second 16-bit code unit or low surrogate (W2) */
+  /* 0xDC00-0xDFFF second 16-bit code unit or low surrogate (W2) */
   case 0xDC:
   case 0xDD:
   case 0xDE:
