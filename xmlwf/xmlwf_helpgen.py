@@ -31,7 +31,14 @@
 import argparse
 
 epilog = """
-libexpat is software libre, licensed under the MIT license.
+exit status:
+  0             the input files are well-formed and the output (if requested) was written successfully
+  1             could not allocate data structures, signals a serious problem with execution environment
+  2             one or more input files were not well-formed
+  3             could not create an output file
+  4             command-line argument error
+
+xmlwf of libexpat is software libre, licensed under the MIT license.
 Please report bugs at https://github.com/libexpat/libexpat/issues.  Thank you!
 """
 
@@ -48,6 +55,7 @@ input_related.add_argument('-x', action='store_true', help='enable processing of
 input_related.add_argument('-e', action='store', metavar='ENCODING', help='override any in-document [e]ncoding declaration')
 input_related.add_argument('-w', action='store_true', help='enable support for [W]indows code pages')
 input_related.add_argument('-r', action='store_true', help='disable memory-mapping and use normal file [r]ead IO calls instead')
+input_related.add_argument('-k', action='store_true', help='when processing multiple files, [k]eep processing after first file with error')
 
 output_related = parser.add_argument_group('output control arguments')
 output_related.add_argument('-d', action='store', metavar='DIRECTORY', help='output [d]estination directory')
@@ -57,7 +65,7 @@ output_mode.add_argument('-m', action='store_true', help='write [m]eta XML, not 
 output_mode.add_argument('-t', action='store_true', help='write no XML output for [t]iming of plain parsing')
 output_related.add_argument('-N', action='store_true', help='enable adding doctype and [n]otation declarations')
 
-parser.add_argument('files', metavar='FILE', nargs='*', help='files to process (default: STDIN)')
+parser.add_argument('files', metavar='FILE', nargs='*', help='file to process (default: STDIN)')
 
 info = parser.add_argument_group('info arguments')
 info = info.add_mutually_exclusive_group()
