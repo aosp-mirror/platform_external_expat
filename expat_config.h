@@ -27,7 +27,7 @@
 #define HAVE_GETPAGESIZE 1
 
 /* Define to 1 if you have the `getrandom' function. */
-#if defined(__BIONIC__)
+#if defined(__BIONIC__) || defined(MUSL)
 #define HAVE_GETRANDOM 1
 #endif
 
@@ -56,7 +56,7 @@
 #define HAVE_STRING_H 1
 
 /* Define to 1 if you have `syscall' and `SYS_getrandom'. */
-#if defined(__BIONIC__)
+#if defined(__BIONIC__) || defined(MUSL)
 #define HAVE_SYSCALL_GETRANDOM 1
 #endif
 
