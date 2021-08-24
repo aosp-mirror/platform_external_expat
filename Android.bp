@@ -70,9 +70,6 @@ cc_library {
         darwin: {
             cflags: ["-fno-common"],
         },
-        musl: {
-            cflags: ["-DMUSL"],
-        },
         windows: {
             enabled: true,
         },
