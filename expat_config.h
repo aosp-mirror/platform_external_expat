@@ -27,7 +27,7 @@
 #define HAVE_GETPAGESIZE 1
 
 /* Define to 1 if you have the `getrandom' function. */
-#if defined(__BIONIC__) || defined(MUSL)
+#if defined(__BIONIC__) || defined(ANDROID_HOST_MUSL)
 #define HAVE_GETRANDOM 1
 #endif
 
