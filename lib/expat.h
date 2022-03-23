@@ -7,14 +7,7 @@
                                  |_| XML parser
 
    Copyright (c) 1997-2000 Thai Open Source Software Center Ltd
-   Copyright (c) 2000      Clark Cooper <coopercc@users.sourceforge.net>
-   Copyright (c) 2000-2005 Fred L. Drake, Jr. <fdrake@users.sourceforge.net>
-   Copyright (c) 2001-2002 Greg Stein <gstein@users.sourceforge.net>
-   Copyright (c) 2002-2016 Karl Waclawek <karl@waclawek.net>
-   Copyright (c) 2016-2022 Sebastian Pipping <sebastian@pipping.org>
-   Copyright (c) 2016      Cristian Rodríguez <crrodriguez@opensuse.org>
-   Copyright (c) 2016      Thomas Beutlich <tc@tbeu.de>
-   Copyright (c) 2017      Rhodri James <rhodri@wildebeest.org.uk>
+   Copyright (c) 2000-2017 Expat development team
    Licensed under the MIT license:
 
    Permission is  hereby granted,  free of charge,  to any  person obtaining
@@ -124,9 +117,7 @@ enum XML_Error {
   /* Added in 2.2.1. */
   XML_ERROR_INVALID_ARGUMENT,
   /* Added in 2.3.0. */
-  XML_ERROR_NO_BUFFER,
-  /* Added in 2.4.0. */
-  XML_ERROR_AMPLIFICATION_LIMIT_BREACH
+  XML_ERROR_NO_BUFFER
 };
 
 enum XML_Content_Type {
@@ -1008,10 +999,7 @@ enum XML_FeatureEnum {
   XML_FEATURE_SIZEOF_XML_LCHAR,
   XML_FEATURE_NS,
   XML_FEATURE_LARGE_SIZE,
-  XML_FEATURE_ATTR_INFO,
-  /* Added in Expat 2.4.0. */
-  XML_FEATURE_BILLION_LAUGHS_ATTACK_PROTECTION_MAXIMUM_AMPLIFICATION_DEFAULT,
-  XML_FEATURE_BILLION_LAUGHS_ATTACK_PROTECTION_ACTIVATION_THRESHOLD_DEFAULT
+  XML_FEATURE_ATTR_INFO
   /* Additional features must be added to the end of this enum. */
 };
 
@@ -1024,24 +1012,12 @@ typedef struct {
 XMLPARSEAPI(const XML_Feature *)
 XML_GetFeatureList(void);
 
-#ifdef XML_DTD
-/* Added in Expat 2.4.0. */
-XMLPARSEAPI(XML_Bool)
-XML_SetBillionLaughsAttackProtectionMaximumAmplification(
-    XML_Parser parser, float maximumAmplificationFactor);
-
-/* Added in Expat 2.4.0. */
-XMLPARSEAPI(XML_Bool)
-XML_SetBillionLaughsAttackProtectionActivationThreshold(
-    XML_Parser parser, unsigned long long activationThresholdBytes);
-#endif
-
 /* Expat follows the semantic versioning convention.
    See http://semver.org.
 */
 #define XML_MAJOR_VERSION 2
-#define XML_MINOR_VERSION 4
-#define XML_MICRO_VERSION 6
+#define XML_MINOR_VERSION 3
+#define XML_MICRO_VERSION 0
 
 #ifdef __cplusplus
 }
