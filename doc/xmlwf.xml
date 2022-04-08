@@ -60,7 +60,6 @@
 	  <arg><option>-t</option></arg>
           <arg><option>-N</option></arg>
 
-	  <arg><option>-k</option></arg>
 	  <arg><option>-v</option></arg>
 
 	  <arg>file ...</arg>
@@ -295,20 +294,6 @@ supports both.
       </varlistentry>
 
       <varlistentry>
-	<term><option>-k</option></term>
-	<listitem>
-		<para>
-  When processing multiple files, Expat by default halts after the	    
-  the first file with an error. This tells Expat to report the error
-  but to keep processing. 
-  This can be useful, for example, when testing a filter that converts
-  many files to XML and you want to quickly find out which conversions
-  failed.
-	  </para>
-	</listitem>
-      </varlistentry>
-      
-      <varlistentry>
         <term><option>-v</option></term>
         <listitem>
 		<para>
@@ -394,55 +379,23 @@ supports both.
   <refsect1>
   <title>OUTPUT</title>
     <para>
-	<command>&dhpackage;</command> outputs nothing for files which are problem-free.
-        If any input file is not well-formed, or if the output for any
-	input file cannot be opened, <command>&dhpackage;</command> prints a single
-	line describing	the problem to standard output.
-    </para>
-    <para>
-        If the <option>-k</option> option is not provided, <command>&dhpackage;</command>
-	halts upon encountering a well-formedness or output-file error. 
-	If <option>-k</option> is provided, <command>&dhpackage;</command> continues
-	processing the remaining input files, describing problems found with any of them.
-    </para>
-  </refsect1>
-
-  <refsect1>
-  <title>EXIT STATUS</title>
-    <para>For option <option>-v</option> or <option>-h</option>, <command>&dhpackage;</command> always exits with status code 0.  For other cases, the following exit status codes are returned:
-    <variablelist>
-      <varlistentry>
-        <term><option>0</option></term>
-        <listitem><para>The input files are well-formed and the output (if requested) was written successfully.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><option>1</option></term>
-        <listitem><para>An internal error occurred.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><option>2</option></term>
-        <listitem><para>One or more input files were not well-formed or could not be parsed.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><option>3</option></term>
-        <listitem><para>If using the <option>-d</option> option, an error occurred opening an output file.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><option>4</option></term>
-        <listitem><para>There was a command-line argument error in how <command>&dhpackage;</command> was invoked.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
+	If an input file is not well-formed,
+	<command>&dhpackage;</command> prints a single line describing
+	the problem to standard output.  If a file is well formed,
+	<command>&dhpackage;</command> outputs nothing.
+	Note that the result code is <emphasis>not</emphasis> set.
 	</para>
   </refsect1>
-
   
   <refsect1>
     <title>BUGS</title>
+	<para>
+	<command>&dhpackage;</command> returns a 0 - noerr result,
+	even if the file is not well-formed.  There is no good way for
+	a program to use <command>&dhpackage;</command> to quickly
+	check a file -- it must parse <command>&dhpackage;</command>'s
+	standard output.
+	</para>
 	<para>
 	The errors should go to standard error, not standard output.
 	</para>

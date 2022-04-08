@@ -1,4 +1,4 @@
-/* d667b5f8e56e24fdfaf5e38596d419d924a9fadceb987d81d5613ecb7ca51b0e (2.3.0+)
+/* f519f27c7c3b79fee55aeb8b1e53b7384b079d9118bf3a62eb3a60986a6742f2 (2.2.9+)
                             __  __            _
                          ___\ \/ /_ __   __ _| |_
                         / _ \\  /| '_ \ / _` | __|
@@ -47,7 +47,6 @@
 #include <limits.h> /* UINT_MAX */
 #include <stdio.h>  /* fprintf */
 #include <stdlib.h> /* getenv, rand_s */
-#include <stdint.h> /* uintptr_t */
 
 #ifdef _WIN32
 #  define getpid GetCurrentProcessId
@@ -100,14 +99,14 @@
     enabled.  For end user security, that is probably not what you want. \
     \
     Your options include: \
-      * Linux >=3.17 + glibc >=2.25 (getrandom): HAVE_GETRANDOM, \
-      * Linux >=3.17 + glibc (including <2.25) (syscall SYS_getrandom): HAVE_SYSCALL_GETRANDOM, \
+      * Linux + glibc >=2.25 (getrandom): HAVE_GETRANDOM, \
+      * Linux + glibc <2.25 (syscall SYS_getrandom): HAVE_SYSCALL_GETRANDOM, \
       * BSD / macOS >=10.7 (arc4random_buf): HAVE_ARC4RANDOM_BUF, \
-      * BSD / macOS (including <10.7) (arc4random): HAVE_ARC4RANDOM, \
+      * BSD / macOS <10.7 (arc4random): HAVE_ARC4RANDOM, \
       * libbsd (arc4random_buf): HAVE_ARC4RANDOM_BUF + HAVE_LIBBSD, \
       * libbsd (arc4random): HAVE_ARC4RANDOM + HAVE_LIBBSD, \
-      * Linux (including <3.17) / BSD / macOS (including <10.7) (/dev/urandom): XML_DEV_URANDOM, \
-      * Windows >=Vista (rand_s): _WIN32. \
+      * Linux / BSD / macOS (/dev/urandom): XML_DEV_URANDOM \
+      * Windows (rand_s): _WIN32. \
     \
     If insist on not using any of these, bypass this error by defining \
     XML_POOR_ENTROPY; you have been warned. \
@@ -122,7 +121,9 @@
 #  define XmlGetInternalEncoding XmlGetUtf16InternalEncoding
 #  define XmlGetInternalEncodingNS XmlGetUtf16InternalEncodingNS
 #  define XmlEncode XmlUtf16Encode
-#  define MUST_CONVERT(enc, s) (! (enc)->isUtf16 || (((uintptr_t)(s)) & 1))
+/* Using pointer subtraction to convert to integer type. */
+#  define MUST_CONVERT(enc, s)                                                 \
+    (! (enc)->isUtf16 || (((char *)(s) - (char *)NULL) & 1))
 typedef unsigned short ICHAR;
 #else
 #  define XML_ENCODE_MAX XML_UTF8_ENCODE_MAX
@@ -734,15 +735,6 @@ writeRandomBytes_arc4random(void *target, size_t count) {
 #endif /* defined(HAVE_ARC4RANDOM) && ! defined(HAVE_ARC4RANDOM_BUF) */
 
 #ifdef _WIN32
-
-/* Provide declaration of rand_s() for MinGW-32 (not 64, which has it),
-   as it didn't declare it in its header prior to version 5.3.0 of its
-   runtime package (mingwrt, containing stdlib.h).  The upstream fix
-   was introduced at https://osdn.net/projects/mingw/ticket/39658 . */
-#  if defined(__MINGW32__) && defined(__MINGW32_VERSION)                       \
-      && __MINGW32_VERSION < 5003000L && ! defined(__MINGW64_VERSION_MAJOR)
-__declspec(dllimport) int rand_s(unsigned int *);
-#  endif
 
 /* Obtain entropy on Windows using the rand_s() function which
  * generates cryptographically secure random numbers.  Internally it
@@ -1409,7 +1401,6 @@ XML_UseForeignDTD(XML_Parser parser, XML_Bool useDTD) {
   parser->m_useForeignDTD = useDTD;
   return XML_ERROR_NONE;
 #else
-  UNUSED_P(useDTD);
   return XML_ERROR_FEATURE_REQUIRES_XML_DTD;
 #endif
 }
@@ -1791,7 +1782,7 @@ XML_Parse(XML_Parser parser, const char *s, int len, int isFinal) {
     int nLeftOver;
     enum XML_Status result;
     /* Detect overflow (a+b > MAX <==> b > MAX-a) */
-    if ((XML_Size)len > ((XML_Size)-1) / 2 - parser->m_parseEndByteIndex) {
+    if (len > ((XML_Size)-1) / 2 - parser->m_parseEndByteIndex) {
       parser->m_errorCode = XML_ERROR_NO_MEMORY;
       parser->m_eventPtr = parser->m_eventEndPtr = NULL;
       parser->m_processor = errorProcessor;
@@ -1883,12 +1874,6 @@ XML_ParseBuffer(XML_Parser parser, int len, int isFinal) {
     parser->m_errorCode = XML_ERROR_FINISHED;
     return XML_STATUS_ERROR;
   case XML_INITIALIZED:
-    /* Has someone called XML_GetBuffer successfully before? */
-    if (! parser->m_bufferPtr) {
-      parser->m_errorCode = XML_ERROR_NO_BUFFER;
-      return XML_STATUS_ERROR;
-    }
-
     if (parser->m_parentParser == NULL && ! startParsing(parser)) {
       parser->m_errorCode = XML_ERROR_NO_MEMORY;
       return XML_STATUS_ERROR;
@@ -2172,7 +2157,7 @@ XML_GetInputContext(XML_Parser parser, int *offset, int *size) {
   (void)offset;
   (void)size;
 #endif /* defined XML_CONTEXT_BYTES */
-  return (const char *)0;
+  return (char *)0;
 }
 
 XML_Size XMLCALL
@@ -2333,10 +2318,6 @@ XML_ErrorString(enum XML_Error code) {
   /* Added in 2.2.5. */
   case XML_ERROR_INVALID_ARGUMENT: /* Constant added in 2.2.1, already */
     return XML_L("invalid argument");
-    /* Added in 2.3.0. */
-  case XML_ERROR_NO_BUFFER:
-    return XML_L(
-        "a successful prior call to function XML_GetBuffer is required");
   }
   return NULL;
 }
@@ -3592,7 +3573,7 @@ doCdataSection(XML_Parser parser, const ENCODING *enc, const char **startPtr,
   *startPtr = NULL;
 
   for (;;) {
-    const char *next = s; /* in case of XML_TOK_NONE or XML_TOK_PARTIAL */
+    const char *next;
     int tok = XmlCdataSectionTok(enc, s, end, &next);
     *eventEndPP = next;
     switch (tok) {
@@ -3710,7 +3691,7 @@ ignoreSectionProcessor(XML_Parser parser, const char *start, const char *end,
 static enum XML_Error
 doIgnoreSection(XML_Parser parser, const ENCODING *enc, const char **startPtr,
                 const char *end, const char **nextPtr, XML_Bool haveMore) {
-  const char *next = *startPtr; /* in case of XML_TOK_NONE or XML_TOK_PARTIAL */
+  const char *next;
   int tok;
   const char *s = *startPtr;
   const char **eventPP;
@@ -5191,8 +5172,8 @@ processInternalEntity(XML_Parser parser, ENTITY *entity, XML_Bool betweenDecl) {
   openEntity->betweenDecl = betweenDecl;
   openEntity->internalEventPtr = NULL;
   openEntity->internalEventEndPtr = NULL;
-  textStart = (const char *)entity->textPtr;
-  textEnd = (const char *)(entity->textPtr + entity->textLen);
+  textStart = (char *)entity->textPtr;
+  textEnd = (char *)(entity->textPtr + entity->textLen);
   /* Set a safe default value in case 'next' does not get set */
   next = textStart;
 
@@ -5234,8 +5215,8 @@ internalEntityProcessor(XML_Parser parser, const char *s, const char *end,
     return XML_ERROR_UNEXPECTED_STATE;
 
   entity = openEntity->entity;
-  textStart = ((const char *)entity->textPtr) + entity->processed;
-  textEnd = (const char *)(entity->textPtr + entity->textLen);
+  textStart = ((char *)entity->textPtr) + entity->processed;
+  textEnd = (char *)(entity->textPtr + entity->textLen);
   /* Set a safe default value in case 'next' does not get set */
   next = textStart;
 
@@ -5255,7 +5236,7 @@ internalEntityProcessor(XML_Parser parser, const char *s, const char *end,
     return result;
   else if (textEnd != next
            && parser->m_parsingStatus.parsing == XML_SUSPENDED) {
-    entity->processed = (int)(next - (const char *)entity->textPtr);
+    entity->processed = (int)(next - (char *)entity->textPtr);
     return result;
   } else {
     entity->open = XML_FALSE;
@@ -5450,8 +5431,8 @@ appendAttributeValue(XML_Parser parser, const ENCODING *enc, XML_Bool isCdata,
         const XML_Char *textEnd = entity->textPtr + entity->textLen;
         entity->open = XML_TRUE;
         result = appendAttributeValue(parser, parser->m_internalEncoding,
-                                      isCdata, (const char *)entity->textPtr,
-                                      (const char *)textEnd, pool);
+                                      isCdata, (char *)entity->textPtr,
+                                      (char *)textEnd, pool);
         entity->open = XML_FALSE;
         if (result)
           return result;
@@ -5550,8 +5531,8 @@ storeEntityValue(XML_Parser parser, const ENCODING *enc,
         } else {
           entity->open = XML_TRUE;
           result = storeEntityValue(
-              parser, parser->m_internalEncoding, (const char *)entity->textPtr,
-              (const char *)(entity->textPtr + entity->textLen));
+              parser, parser->m_internalEncoding, (char *)entity->textPtr,
+              (char *)(entity->textPtr + entity->textLen));
           entity->open = XML_FALSE;
           if (result)
             goto endEntityValue;
@@ -6506,7 +6487,7 @@ hashTableInit(HASH_TABLE *p, const XML_Memory_Handling_Suite *ms) {
 static void FASTCALL
 hashTableIterInit(HASH_TABLE_ITER *iter, const HASH_TABLE *table) {
   iter->p = table->v;
-  iter->end = iter->p ? iter->p + table->size : NULL;
+  iter->end = iter->p + table->size;
 }
 
 static NAMED *FASTCALL
