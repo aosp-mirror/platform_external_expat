@@ -55,6 +55,7 @@ cc_library {
         "lib/xmltok.c",
     ],
     cflags: [
+        "-fno-strict-aliasing",
         "-Wall",
         "-Werror",
         "-Wmissing-prototypes",
