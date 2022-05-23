@@ -7197,7 +7197,7 @@ static XML_Char *
 copyString(const XML_Char *s,
            const XML_Memory_Handling_Suite *memsuite)
 {
-    int charsRequired = 0;
+    size_t charsRequired = 0;
     XML_Char *result;
 
     /* First determine how long the string is */
