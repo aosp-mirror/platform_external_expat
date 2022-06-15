@@ -10,17 +10,13 @@ third_party {
   }
   url {
     type: ARCHIVE
-    value: "https://github.com/libexpat/libexpat/releases/download/R_2_4_6/expat-2.4.6.tar.bz2"
+    value: "https://github.com/libexpat/libexpat/releases/download/R_2_3_0/expat-2.3.0.tar.bz2"
   }
-  version: "R_2_4_6"
-  license_note: "contains GFDL documentation"
+  version: "R_2_3_0"
   license_type: BY_EXCEPTION_ONLY
-  security {
-    tag: "NVD-CPE2.3:cpe:/a:libexpat_project:libexpat:2.4.1"
-  }
   last_upgrade_date {
-    year: 2022
-    month: 2
-    day: 23
+    year: 2021
+    month: 4
+    day: 1
   }
 }
