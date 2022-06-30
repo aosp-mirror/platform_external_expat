@@ -64,6 +64,11 @@ cc_library {
         "-Wno-missing-field-initializers",
         "-DHAVE_EXPAT_CONFIG_H",
         "-UWIN32_LEAN_AND_MEAN",
+        // As of 2.4.6, xmlparse.c includes expat_config.h *before* including
+        // any system header file, meaning that __BIONIC__ and __GLIBC__ and so
+        // on aren't set, but our modifications to have one expat_config.h for
+        // all targets rely on those defines.
+        "-include stdio.h",
     ],
 
     target: {
