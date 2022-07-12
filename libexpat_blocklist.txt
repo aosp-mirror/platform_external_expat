@@ -1,0 +1,7 @@
+[integer]
+# These functions are hash related, so they are expected to contain overflows.
+# We can't just blocklist the file because it's a header, so instead we need
+# to list the functions here.
+fun:sip_tokey
+fun:sip_tobin
+fun:sip_round

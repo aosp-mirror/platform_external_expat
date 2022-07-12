@@ -79,11 +79,21 @@ cc_library {
         windows: {
             enabled: true,
         },
+        android: {
+            sanitize: {
+                integer_overflow: true,
+                misc_undefined: ["bounds"],
+            },
+        },
     },
 
     stl: "none",
     local_include_dirs: ["lib"],
     export_include_dirs: ["lib"],
+
+    sanitize: {
+        blocklist: "libexpat_blocklist.txt",
+    },
 
     apex_available: [
         "//apex_available:platform",
