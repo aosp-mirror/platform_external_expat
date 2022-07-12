@@ -47,7 +47,7 @@ cc_library {
     double_loadable: true,
     host_supported: true,
     unique_host_soname: true,
-    sdk_version: "9",
+    sdk_version: "26",
 
     srcs: [
         "lib/xmlparse.c",
