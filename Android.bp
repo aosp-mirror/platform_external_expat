@@ -47,7 +47,7 @@ cc_library {
     double_loadable: true,
     host_supported: true,
     unique_host_soname: true,
-    sdk_version: "9",
+    sdk_version: "26",
 
     srcs: [
         "lib/xmlparse.c",
@@ -55,6 +55,7 @@ cc_library {
         "lib/xmltok.c",
     ],
     cflags: [
+        "-fno-strict-aliasing",
         "-Wall",
         "-Werror",
         "-Wmissing-prototypes",
@@ -78,11 +79,21 @@ cc_library {
         windows: {
             enabled: true,
         },
+        android: {
+            sanitize: {
+                integer_overflow: true,
+                misc_undefined: ["bounds"],
+            },
+        },
     },
 
     stl: "none",
     local_include_dirs: ["lib"],
     export_include_dirs: ["lib"],
+
+    sanitize: {
+        blocklist: "libexpat_blocklist.txt",
+    },
 
     apex_available: [
         "//apex_available:platform",
