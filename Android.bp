@@ -50,9 +50,9 @@ cc_library {
     sdk_version: "26",
 
     srcs: [
-        "lib/xmlparse.c",
-        "lib/xmlrole.c",
-        "lib/xmltok.c",
+        "expat/lib/xmlparse.c",
+        "expat/lib/xmlrole.c",
+        "expat/lib/xmltok.c",
     ],
     cflags: [
         "-fno-strict-aliasing",
