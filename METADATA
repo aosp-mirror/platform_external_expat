@@ -9,8 +9,8 @@ third_party {
     value: "https://github.com/libexpat/libexpat/"
   }
   url {
-    type: ARCHIVE
-    value: "https://github.com/libexpat/libexpat/releases/download/R_2_4_8/expat-2.4.8.tar.bz2"
+    type: GIT
+    value: "https://github.com/libexpat/libexpat/"
   }
   version: "R_2_4_8"
   license_type: BY_EXCEPTION_ONLY
