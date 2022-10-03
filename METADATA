@@ -12,7 +12,7 @@ third_party {
     type: GIT
     value: "https://github.com/libexpat/libexpat/"
   }
-  version: "R_2_4_8"
+  version: "R_2_4_9"
   license_type: BY_EXCEPTION_ONLY
   license_note: "contains GFDL documentation"
   security {
@@ -20,7 +20,7 @@ third_party {
   }
   last_upgrade_date {
     year: 2022
-    month: 5
-    day: 23
+    month: 9
+    day: 30
   }
 }
