@@ -21,7 +21,7 @@ third_party {
   license_type: BY_EXCEPTION_ONLY
   license_note: "contains GFDL documentation"
   security {
-    tag: "NVD-CPE2.3:cpe:/a:libexpat_project:libexpat:2.4.8"
+    tag: "NVD-CPE2.3:cpe:/a:libexpat_project:libexpat:2.5.0"
   }
   last_upgrade_date {
     year: 2022
