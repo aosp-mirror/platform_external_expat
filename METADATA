@@ -3,29 +3,26 @@
 # DEPENDING ON IT IN YOUR PROJECT.
 
 # This project was upgraded with external_updater.
-# Usage: tools/external_updater/updater.sh update expat
-# For more info, check https://cs.android.com/android/platform/superproject/+/master:tools/external_updater/README.md
+# Usage: tools/external_updater/updater.sh update external/expat
+# For more info, check https://cs.android.com/android/platform/superproject/+/main:tools/external_updater/README.md
 
 name: "expat"
 description: "Expat is a stream-oriented XML parser."
 third_party {
-  url {
-    type: HOMEPAGE
-    value: "https://github.com/libexpat/libexpat/"
-  }
-  url {
-    type: GIT
-    value: "https://github.com/libexpat/libexpat/"
-  }
-  version: "R_2_5_0"
   license_type: BY_EXCEPTION_ONLY
   license_note: "contains GFDL documentation"
   security {
     tag: "NVD-CPE2.3:cpe:/a:libexpat_project:libexpat:2.5.0"
   }
   last_upgrade_date {
-    year: 2022
-    month: 10
-    day: 25
+    year: 2024
+    month: 2
+    day: 8
+  }
+  homepage: "https://github.com/libexpat/libexpat/"
+  identifier {
+    type: "Git"
+    value: "https://github.com/libexpat/libexpat/"
+    version: "R_2_6_0"
   }
 }
