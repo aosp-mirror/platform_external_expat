@@ -1,6 +1,7 @@
 Makefile
 elements
 elements.plg
+element_declarations
 outline
 outline.plg
 Debug
