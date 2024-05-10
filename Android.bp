@@ -41,9 +41,6 @@ cc_library {
     name: "libexpat",
     vendor_available: true,
     product_available: true,
-    vndk: {
-        enabled: true,
-    },
     double_loadable: true,
     host_supported: true,
     unique_host_soname: true,
@@ -60,9 +57,6 @@ cc_library {
         "-Werror",
         "-Wmissing-prototypes",
         "-Wstrict-prototypes",
-        "-Wno-unused-function",
-        "-Wno-unused-parameter",
-        "-Wno-missing-field-initializers",
         "-DHAVE_EXPAT_CONFIG_H",
         "-UWIN32_LEAN_AND_MEAN",
         // As of 2.4.6, xmlparse.c includes expat_config.h *before* including
