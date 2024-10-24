@@ -3,8 +3,8 @@
 # DEPENDING ON IT IN YOUR PROJECT.
 
 # This project was upgraded with external_updater.
-# Usage: tools/external_updater/updater.sh update external/<absolute path to project>
-# For more info, check https://cs.android.com/android/platform/superproject/+/main:tools/external_updater/README.md
+# Usage: tools/external_updater/updater.sh update external/expat
+# For more info, check https://cs.android.com/android/platform/superproject/main/+/main:tools/external_updater/README.md
 
 name: "expat"
 description: "Expat is a stream-oriented XML parser."
@@ -16,13 +16,13 @@ third_party {
   }
   last_upgrade_date {
     year: 2024
-    month: 4
-    day: 26
+    month: 9
+    day: 18
   }
   homepage: "https://github.com/libexpat/libexpat/"
   identifier {
     type: "Git"
     value: "https://github.com/libexpat/libexpat/"
-    version: "R_2_6_2"
+    version: "R_2_6_3"
   }
 }
