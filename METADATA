@@ -15,14 +15,14 @@ third_party {
     tag: "NVD-CPE2.3:cpe:/a:libexpat_project:libexpat:2.5.0"
   }
   last_upgrade_date {
-    year: 2024
-    month: 9
-    day: 18
+    year: 2025
+    month: 1
+    day: 9
   }
   homepage: "https://github.com/libexpat/libexpat/"
   identifier {
     type: "Git"
     value: "https://github.com/libexpat/libexpat/"
-    version: "R_2_6_3"
+    version: "R_2_6_4"
   }
 }
