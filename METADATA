@@ -16,13 +16,13 @@ third_party {
   }
   last_upgrade_date {
     year: 2025
-    month: 1
-    day: 9
+    month: 4
+    day: 8
   }
   homepage: "https://github.com/libexpat/libexpat/"
   identifier {
     type: "Git"
     value: "https://github.com/libexpat/libexpat/"
-    version: "R_2_6_4"
+    version: "R_2_7_1"
   }
 }

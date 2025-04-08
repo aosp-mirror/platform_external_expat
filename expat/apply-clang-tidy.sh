@@ -6,7 +6,7 @@
 #                      \___/_/\_\ .__/ \__,_|\__|
 #                               |_| XML parser
 #
-# Copyright (c) 2024 Sebastian Pipping <sebastian@pipping.org>
+# Copyright (c) 2024-2025 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under the MIT license:
 #
 # Permission is  hereby granted,  free of charge,  to any  person obtaining
@@ -44,9 +44,6 @@ checks_to_disable=(
 
     # Used only in xmlwf, manually checked to be good enough for now
     clang-analyzer-security.insecureAPI.strcpy
-
-    # Disabling because buggy, see https://github.com/llvm/llvm-project/issues/40656
-    clang-analyzer-valist.Uninitialized
 )
 checks_to_disable_flat="${checks_to_disable[*]}"  # i.e. flat string separated by spaces
 
