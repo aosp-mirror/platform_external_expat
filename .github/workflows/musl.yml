@@ -5,9 +5,7 @@
 #                      \___/_/\_\ .__/ \__,_|\__|
 #                               |_| XML parser
 #
-# Copyright (c) 2021-2024 Sebastian Pipping <sebastian@pipping.org>
-# Copyright (c) 2023      Joyce Brum <joycebrum@google.com>
-# Copyright (c) 2024      Dag-Erling Smørgrav <des@des.dev>
+# Copyright (c) 2025 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under the MIT license:
 #
 # Permission is  hereby granted,  free of charge,  to any  person obtaining
@@ -29,7 +27,7 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 # USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-name: Collect test coverage
+name: Build with musl
 
 on:
   pull_request:
@@ -42,50 +40,30 @@ permissions:
   contents: read
 
 jobs:
-  checks:
-    name: Collect test coverage
+  musl:
+    name: Build with musl
     runs-on: ubuntu-22.04
-    env:
-      CFLAGS: -g3 -pipe
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+
     - name: Install build dependencies
       run: |-
-        set -x -u
-        source /etc/os-release
-
-        # Unlock 32bit architecture (for Wine further down)
-        sudo dpkg --add-architecture i386  # for wine32
-        sudo apt-get update  # due to new architecture
-
+        set -x
+        sudo apt-get update
         sudo apt-get install --yes --no-install-recommends -V \
             cmake \
-            docbook-xml \
-            docbook2x \
-            gcc-multilib \
-            g++-multilib \
-            lcov \
-            libbsd-dev \
-            lzip \
-            moreutils
+            musl-tools
 
-        # Install 32bit Wine
-        sudo apt-get install --yes --no-install-recommends -V \
-            mingw-w64 \
-            wine-stable \
-            wine32:i386
-    - name: Unshallow Git clone
+    - name: Build using musl-tools
       run: |
-        git fetch --force --tags --unshallow origin  # for "git describe" in coverage.sh
-    - name: Collect test coverage
-      env:
-        MODE: coverage-sh
-      run: |
-        exec ./.ci.sh
-
-    - name: Store coverage .info and HTML report
-      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02  # v4.6.2
-      with:
-        name: coverage
-        path: expat/coverage__*/
-        if-no-files-found: error
+        cmake_args=(
+          -DCMAKE_C_COMPILER=musl-gcc
+          -DCMAKE_CXX_COMPILER=g++  # musl-tools does not support C++
+          -DCMAKE_C_FLAGS='-O1 -pipe -Wall -Wextra -pedantic -Wno-overlength-strings'
+          -DCMAKE_CXX_FLAGS='-O0 -pipe'
+          -DEXPAT_BUILD_DOCS=OFF
+          -DEXPAT_WARNINGS_AS_ERRORS=ON
+        )
+        set -x
+        cmake "${cmake_args[@]}" -S expat/ -B build/
+        make -C build -j$(nproc) VERBOSE=1 all
